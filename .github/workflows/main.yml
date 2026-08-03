@@ -1,0 +1,30 @@
+name: Build WF
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Build:
+    runs-on: ubunte-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+
+      - name: Maven Build
+        run: mvn install
+
+
+  Testing:
+     runs-on: ubunte-latest
+     needs: Build
+     steps:
+       - name: Code checkout
+         uses: actions/checkout@v4
+
+       - name: Run test on main branch
+         run: mvn test
+
+       - name: Checkstyle
+         run: mvn checkstyle:checkstyle
+
