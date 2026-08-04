@@ -1,4 +1,4 @@
-name: Build WF1
+name: Project Alpha CICD Workflow
 on:
   push:
     branches:
